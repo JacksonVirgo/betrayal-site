@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,900&family=Sedgwick+Ave+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "Roboto", sans-serif;
+}

@@ -1,0 +1,40 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model Role {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    name      String
+    flavour   String?
+    abilities Ability[]
+    perks     Perk[]
+    aliases   String[]
+    tags      String[]
+}
+
+model Ability {
+    id      String  @id @default(auto()) @map("_id") @db.ObjectId
+    role    Role?   @relation(fields: [roleId], references: [id])
+    roleId  String? @db.ObjectId
+    name    String
+    charges Int? // 0 = unlimited
+    effect  String
+
+    baseIntent String? // positive, negative or neutral
+    tags       String[]
+}
+
+model Perk {
+    id     String  @id @default(auto()) @map("_id") @db.ObjectId
+    role   Role?   @relation(fields: [roleId], references: [id])
+    roleId String? @db.ObjectId
+    name   String
+    effect String
+
+    tags String[]
+}
