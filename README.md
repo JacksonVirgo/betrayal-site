@@ -11,4 +11,4 @@ This site is being compiled to be a one-stop place for all the information you n
 
 ## I have a suggestion, where can I tell you?
 
-For any ideas, you can [create an issue](https://github.com/JacksonVirgo/betrayal-site/issues) in this repository, or message me on Discord.
+For any ideas, you can [create an issue](https://github.com/JacksonVirgo/betrayal-site/issues/new) in this repository, or message me on Discord.
