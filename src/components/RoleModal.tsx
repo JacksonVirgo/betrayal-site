@@ -1,3 +1,5 @@
+import { faCopy, faLink, faUpDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Role, evilRoleNames, goodRoleNames, roles } from "~/utils/roles";
 import { capitlizeWords } from "~/utils/string";
@@ -65,15 +67,12 @@ function RoleData({ role }: RoleModalChildProps) {
             <h3 className="text-xl font-extrabold">Abilities</h3>
             <ul>
                 {role.abilities.map((ability) => (
-                    <li
+                    <Ability
+                        name={ability.name}
+                        charges={ability.charges}
+                        effect={ability.effect}
                         key={ability.name}
-                        className="mb-4 ml-2 border-l-4 border-l-gray-400 pl-4"
-                    >
-                        <h4 className="font-extrabold">
-                            {ability.name} [x{ability.charges ?? "inf"}]
-                        </h4>
-                        <p>{ability.effect}</p>
-                    </li>
+                    />
                 ))}
             </ul>
             <h3 className="text-xl font-extrabold">Perks</h3>
@@ -89,5 +88,58 @@ function RoleData({ role }: RoleModalChildProps) {
                 ))}
             </ul>
         </>
+    );
+}
+
+type AbilityProps = {
+    name: string;
+    effect: string;
+    charges?: number;
+};
+
+function Ability({ name, effect, charges }: AbilityProps) {
+    const [isFocused, setIsFocused] = useState(false);
+
+    const copyRoleToClipboard = async () => {
+        const text = `${name} [x${charges ?? "inf"}] - ${effect}`;
+        await navigator.clipboard.writeText(text);
+    };
+
+    return (
+        <li
+            onMouseEnter={() => setIsFocused(true)}
+            onMouseLeave={() => setIsFocused(false)}
+            className="mb-4 ml-2 flex flex-row border-l-4 border-l-gray-400 p-2 pl-4 hover:bg-gray-200"
+        >
+            <div className="w-full grow">
+                <h4 className="font-extrabold">
+                    {name} [x{charges ?? "inf"}]
+                </h4>
+                <p>{effect}</p>
+                <p className={`text-sm text-gray-500`}>Positive · Is an AA</p>
+            </div>
+            <div
+                className={`flex flex-col items-center justify-evenly px-2 align-middle ${
+                    isFocused ? "block" : "hidden"
+                }`}
+            >
+                <FontAwesomeIcon
+                    icon={faCopy}
+                    className="text-lg text-gray-500 hover:cursor-pointer hover:text-gray-700"
+                    onClick={() => {
+                        void copyRoleToClipboard();
+                        return;
+                    }}
+                />
+                <FontAwesomeIcon
+                    icon={faLink}
+                    className="text-lg text-gray-500 hover:cursor-pointer hover:text-gray-700"
+                />
+                <FontAwesomeIcon
+                    icon={faUpDown}
+                    className="text-lg text-gray-500 hover:cursor-pointer hover:text-gray-700"
+                />
+            </div>
+        </li>
     );
 }

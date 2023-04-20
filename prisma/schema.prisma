@@ -38,3 +38,18 @@ model Perk {
 
     tags String[]
 }
+
+model Item {
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    name   String
+    effect String
+    price  Int
+    rarity String
+}
+
+model Status {
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    name   String
+    effect String
+    // Implement a way to query things that can inflict / cure this status
+}

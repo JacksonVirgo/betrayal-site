@@ -7,11 +7,14 @@ import {
     fas,
     faMagnifyingGlass,
     faFaceDizzy,
+    faCopy,
+    faLink,
+    faUpDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 config.autoAddCss = false;
 
-library.add(fas, faFaceDizzy, faMagnifyingGlass);
+library.add(fas, faFaceDizzy, faMagnifyingGlass, faCopy, faLink, faUpDown);
 
 const MyApp: AppType = ({ Component, pageProps }) => {
     return <Component {...pageProps} />;

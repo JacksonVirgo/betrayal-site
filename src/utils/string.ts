@@ -6,3 +6,10 @@ export function capitlizeWords(str: string) {
     });
     return capitalizedWords.join(" ");
 }
+
+export function verifyString(query: unknown) {
+    if (typeof query != "string") {
+        return null;
+    }
+    return query;
+}

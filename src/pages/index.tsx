@@ -1,4 +1,3 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import RoleModal from "~/components/RoleModal";
 import { evilRoleNames, goodRoleNames, neutralRoleNames } from "~/utils/roles";
